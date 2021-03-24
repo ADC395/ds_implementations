@@ -1,2 +1,2 @@
 # ds_implementations
-Fleshing out and implementing data structures
+Focusing on implementation of the basic, and eventually, more complex data structures from scratch (with the occassional help of online resources). This may end up being a catch all for algorithms implementation as well.

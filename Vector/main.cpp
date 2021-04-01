@@ -40,7 +40,7 @@ public:
     // Must perform a size check to see if we need to reallocate
     void add(int numToAdd){
 
-        // If the last element is NULL, we have room to add
+        // If last element less than size, we good
         if(lastElement < sizeVar){
             foo[lastElement] = numToAdd;
             lastElement++;

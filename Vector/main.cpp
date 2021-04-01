@@ -7,15 +7,16 @@ private:
 
     // Allocate new memory with 10 more elements, copy contents, de-allocate old memory
     void grow(){
-        int* bigger = new int[this->sizeVar + 10];
+        int* bigger = new int[sizeVar + 10];
 
         // Copy contents
-        for(int i = 0; i < this->sizeVar; i++){
+        for(int i = 0; i < sizeVar; i++){
             bigger[i] = foo[i];
         }
 
         delete foo;
         foo = bigger;
+        sizeVar += 10;
     }
 
 public:
@@ -32,6 +33,7 @@ public:
     // Constructor for specified size
     myVector(int number){
         foo = new int[number];
+        sizeVar = number;
     }
 
     // Add element
@@ -39,11 +41,14 @@ public:
     void add(int numToAdd){
 
         // If the last element is NULL, we have room to add
-        if(foo[sizeVar] == '\0'){
-            foo[lastElement + 1] = numToAdd;
+        if(lastElement < sizeVar){
+            foo[lastElement] = numToAdd;
             lastElement++;
         }else{
-            std::cout << "Your vector doesn't have enough space allocated. Tell your developer to finish his function!";
+            std::cout << "Resizing the vector\n";
+            this->grow();
+            foo[lastElement] = numToAdd;
+            lastElement++;
         }
     }
 
@@ -75,11 +80,24 @@ int main(){
     std::cout << "Hello we are testing the Vector" << std::endl;
 
     myVector v;
-    std::cout << v.sizeOf() << std::endl;
+    myVector v2(25);
+    std::cout << "V: \nWith size: " << v.sizeOf() << std::endl;
 
-    for(int i = 0; i < v.sizeOf(); i++){
-        std::cout << v.get(i) << std::endl;
+    for(int i = 0; i < 100; i++){
+    	v.add(i);
+    	std::cout << "Added: " << i << std::endl;
     }
 
-    return(0);
+    std::cout << "V2: \nWith size: " << v2.sizeOf() << std::endl;
+
+    for(int i = 0; i < 30; i++){
+    	v2.add(i);
+    	std::cout << "Added: " << i << std::endl;
+    }
+
+    std::cout << "V: \nWith size: " << v.sizeOf() << std::endl;
+    std::cout << "V2: \nWith size: " << v2.sizeOf() << std::endl;
+
+    return 0;
+
 }

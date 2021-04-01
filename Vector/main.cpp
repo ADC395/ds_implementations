@@ -2,27 +2,27 @@
 
 class myVector{
 private:
+
+    int sizeVar;
+    int* foo;
     const int defaultSize = 10;
     int lastElement = 0;
 
     // Allocate new memory with 10 more elements, copy contents, de-allocate old memory
     void grow(){
-        int* bigger = new int[sizeVar + 10];
+        int* biggerFoo = new int[sizeVar + 10];
 
         // Copy contents
         for(int i = 0; i < sizeVar; i++){
-            bigger[i] = foo[i];
+            biggerFoo[i] = foo[i];
         }
 
         delete foo;
-        foo = bigger;
+        foo = biggerFoo;
         sizeVar += 10;
     }
 
 public:
-
-    int sizeVar;
-    int* foo;
 
     // Default constructor - allocate 10 elements
     myVector(){
